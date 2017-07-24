@@ -122,17 +122,20 @@ PROTOTYPE.reposition = function(event, effect) {
 
 		// Otherwise use regular jQuery methods
 		else {
-			targetWidth = target.outerWidth(FALSE);
-			targetHeight = target.outerHeight(FALSE);
+			// use getClientRects if available
 			if (target[0].getClientRects) {
 				var view = target[0].ownerDocument.defaultView;
 				var rects = target[0].getClientRects();
+				targetWidth = rects[0].width;
+				targetHeight = rects[0].height;
 				if (rects) {
 					position = { top: view.pageYOffset + rects[0].top, left: view.pageXOffset + rects[0].left };
 				} else {
 					position = { top: 0, left: 0 };
 				}
 			} else {
+				targetWidth = target.outerWidth(FALSE);
+				targetHeight = target.outerHeight(FALSE);
 				position = target.offset();
 			}
 		}
