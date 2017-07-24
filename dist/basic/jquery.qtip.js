@@ -1,12 +1,12 @@
 /*
- * qTip2 - Pretty powerful tooltips - v3.0.3
+ * qTip2 - Pretty powerful tooltips - v3.0.3-4-g
  * http://qtip2.com
  *
- * Copyright (c) 2016 
+ * Copyright (c) 2017 
  * Released under the MIT licenses
  * http://jquery.org/license
  *
- * Date: Wed May 11 2016 10:31 GMT+0100+0100
+ * Date: Mon Jul 24 2017 11:18 GMT+0900+0900
  * Plugins: None
  * Styles: core
  */
@@ -828,9 +828,22 @@ PROTOTYPE.reposition = function(event, effect) {
 
 		// Otherwise use regular jQuery methods
 		else {
-			targetWidth = target.outerWidth(FALSE);
-			targetHeight = target.outerHeight(FALSE);
-			position = target.offset();
+			// use getClientRects if available
+			if (target[0].getClientRects) {
+				var view = target[0].ownerDocument.defaultView;
+				var rects = target[0].getClientRects();
+				targetWidth = rects[0].width;
+				targetHeight = rects[0].height;
+				if (rects) {
+					position = { top: view.pageYOffset + rects[0].top, left: view.pageXOffset + rects[0].left };
+				} else {
+					position = { top: 0, left: 0 };
+				}
+			} else {
+				targetWidth = target.outerWidth(FALSE);
+				targetHeight = target.outerHeight(FALSE);
+				position = target.offset();
+			}
 		}
 
 		// Parse returned plugin values into proper variables
@@ -1775,7 +1788,7 @@ function init(elem, id, opts) {
 
 	// Remove title attribute and store it if present
 	if(config.suppress && (title = elem.attr('title'))) {
-		// Final attr call fixes event delegatiom and IE default tooltip showing problem
+		// Final attr call fixes event delegation and IE default tooltip showing problem
 		elem.removeAttr('title').attr(oldtitle, title).attr('title', '');
 	}
 
@@ -1931,7 +1944,7 @@ if(!$.ui) {
 	};
 }
 ;// qTip version
-QTIP.version = '3.0.3';
+QTIP.version = '3.0.3-4-g';
 
 // Base ID for all qTips
 QTIP.nextid = 0;
