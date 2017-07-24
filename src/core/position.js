@@ -124,7 +124,17 @@ PROTOTYPE.reposition = function(event, effect) {
 		else {
 			targetWidth = target.outerWidth(FALSE);
 			targetHeight = target.outerHeight(FALSE);
-			position = target.offset();
+			if (target[0].getClientRects) {
+				var view = target[0].ownerDocument.defaultView;
+				var rects = target[0].getClientRects();
+				if (rects) {
+					position = { top: view.pageYOffset + rects[0].top, left: view.pageXOffset + rects[0].left };
+				} else {
+					position = { top: 0, left: 0 };
+				}
+			} else {
+				position = target.offset();
+			}
 		}
 
 		// Parse returned plugin values into proper variables
