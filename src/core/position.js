@@ -126,11 +126,13 @@ PROTOTYPE.reposition = function(event, effect) {
 			if (target[0].getClientRects) {
 				var view = target[0].ownerDocument.defaultView;
 				var rects = target[0].getClientRects();
-				targetWidth = rects[0].width;
-				targetHeight = rects[0].height;
-				if (rects) {
+				if (rects && rects.length) {
+					targetWidth = rects[0].width;
+					targetHeight = rects[0].height;
 					position = { top: view.pageYOffset + rects[0].top, left: view.pageXOffset + rects[0].left };
 				} else {
+					targetWidth = 0;
+					targetHeight = 0;
 					position = { top: 0, left: 0 };
 				}
 			} else {
