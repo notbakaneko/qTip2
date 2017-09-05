@@ -1,12 +1,12 @@
 /*
- * qTip2 - Pretty powerful tooltips - v3.0.3-4-g
+ * qTip2 - Pretty powerful tooltips - v3.0.3-5-g
  * http://qtip2.com
  *
  * Copyright (c) 2017 
  * Released under the MIT licenses
  * http://jquery.org/license
  *
- * Date: Mon Jul 24 2017 11:18 GMT+0900+0900
+ * Date: Tue Sep 5 2017 10:09 GMT+0900+0900
  * Plugins: tips modal viewport svg imagemap ie6
  * Styles: core basic css3
  */
@@ -832,11 +832,13 @@ PROTOTYPE.reposition = function(event, effect) {
 			if (target[0].getClientRects) {
 				var view = target[0].ownerDocument.defaultView;
 				var rects = target[0].getClientRects();
-				targetWidth = rects[0].width;
-				targetHeight = rects[0].height;
-				if (rects) {
+				if (rects && rects.length) {
+					targetWidth = rects[0].width;
+					targetHeight = rects[0].height;
 					position = { top: view.pageYOffset + rects[0].top, left: view.pageXOffset + rects[0].left };
 				} else {
+					targetWidth = 0;
+					targetHeight = 0;
 					position = { top: 0, left: 0 };
 				}
 			} else {
@@ -990,8 +992,8 @@ C.string = function(join) {
 	var x = this.x, y = this.y;
 
 	var result = x !== y ?
-		x === 'center' || y !== 'center' && (this.precedance === Y || this.forceY) ? 
-			[y,x] : 
+		x === 'center' || y !== 'center' && (this.precedance === Y || this.forceY) ?
+			[y,x] :
 			[x,y] :
 		[x];
 
@@ -1944,7 +1946,7 @@ if(!$.ui) {
 	};
 }
 ;// qTip version
-QTIP.version = '3.0.3-4-g';
+QTIP.version = '3.0.3-5-g';
 
 // Base ID for all qTips
 QTIP.nextid = 0;
