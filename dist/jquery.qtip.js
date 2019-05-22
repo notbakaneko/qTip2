@@ -1,12 +1,12 @@
 /*
- * qTip2 - Pretty powerful tooltips - v3.0.3-5-g
+ * qTip2 - Pretty powerful tooltips - v3.0.3-jquery3
  * http://qtip2.com
  *
- * Copyright (c) 2017 
+ * Copyright (c) 2018 
  * Released under the MIT licenses
  * http://jquery.org/license
  *
- * Date: Tue Sep 5 2017 10:09 GMT+0900+0900
+ * Date: Wed Dec 19 2018 02:32 GMT+0900+0900
  * Plugins: tips modal viewport svg imagemap ie6
  * Styles: core basic css3
  */
@@ -992,8 +992,8 @@ C.string = function(join) {
 	var x = this.x, y = this.y;
 
 	var result = x !== y ?
-		x === 'center' || y !== 'center' && (this.precedance === Y || this.forceY) ?
-			[y,x] :
+		x === 'center' || y !== 'center' && (this.precedance === Y || this.forceY) ? 
+			[y,x] : 
 			[x,y] :
 		[x];
 
@@ -1946,7 +1946,7 @@ if(!$.ui) {
 	};
 }
 ;// qTip version
-QTIP.version = '3.0.3-5-g';
+QTIP.version = '3.0.3-jquery3';
 
 // Base ID for all qTips
 QTIP.nextid = 0;
@@ -3031,7 +3031,16 @@ $.extend(TRUE, QTIP.defaults, {
 	viewportWidth = viewport[0] === window ? viewport.width() : viewport.outerWidth(FALSE);
 	viewportHeight = viewport[0] === window ? viewport.height() : viewport.outerHeight(FALSE);
 	viewportScroll = { left: fixed ? 0 : viewport.scrollLeft(), top: fixed ? 0 : viewport.scrollTop() };
-	viewportOffset = viewport.offset() || adjusted;
+
+	try {
+		viewportOffset = viewport.offset();
+	} catch (_error) {
+		// do nothing
+	}
+
+	if (!viewportOffset) {
+		viewportOffset = adjusted;
+	}
 
 	// Generic calculation method
 	function calculate(side, otherSide, type, adjustment, side1, side2, lengthName, targetLength, elemLength) {

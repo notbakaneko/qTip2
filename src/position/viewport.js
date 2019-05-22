@@ -28,7 +28,16 @@ PLUGINS.viewport = function(api, position, posOptions, targetWidth, targetHeight
 	viewportWidth = viewport[0] === window ? viewport.width() : viewport.outerWidth(FALSE);
 	viewportHeight = viewport[0] === window ? viewport.height() : viewport.outerHeight(FALSE);
 	viewportScroll = { left: fixed ? 0 : viewport.scrollLeft(), top: fixed ? 0 : viewport.scrollTop() };
-	viewportOffset = viewport.offset() || adjusted;
+
+	try {
+		viewportOffset = viewport.offset();
+	} catch (_error) {
+		// do nothing
+	}
+
+	if (!viewportOffset) {
+		viewportOffset = adjusted;
+	}
 
 	// Generic calculation method
 	function calculate(side, otherSide, type, adjustment, side1, side2, lengthName, targetLength, elemLength) {

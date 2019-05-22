@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/qTip2/qTip2.svg)](https://travis-ci.org/qTip2/qTip2)
 [![devDependency Status](https://david-dm.org/qTip2/qTip2/dev-status.svg?theme=shields.io)](https://david-dm.org/qTip2/qTip2#info=devDependencies)
+[![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/qtip2/badge?style=rounded)](https://www.jsdelivr.com/package/npm/qtip2)
 [![Join the chat at https://gitter.im/qTip2/qTip2](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/qTip2/qTip2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [qTip<sup>2</sup>][site] - Pretty powerful tooltips
@@ -46,7 +47,7 @@ If you have any questions, please feel free to post on the [support forums][foru
 check out the [thorough documentation][docs] both here in the repo and on the [official site][site].
 
 ## License
-Copyright (c) 2011-2016 Craig Michael Thompson. Licensed under the MIT license. *See [here][license] for more details.*
+Copyright (c) 2011-2018 Craig Michael Thompson. Licensed under the MIT license. *See [here][license] for more details.*
 
 ## Special thanks
 Big shout-out to ["Cowboy" Ben Alman][cowboy] for providing the [grunt][grunt] build system used by qTip<sup>2</sup>
