@@ -2,11 +2,11 @@
  * qTip2 - Pretty powerful tooltips - v3.0.3-jquery3
  * http://qtip2.com
  *
- * Copyright (c) 2018 
+ * Copyright (c) 2019 
  * Released under the MIT licenses
  * http://jquery.org/license
  *
- * Date: Wed Dec 19 2018 02:32 GMT+0900+0900
+ * Date: Wed May 22 2019 04:29 GMT+0900+0900
  * Plugins: None
  * Styles: core
  */
@@ -1412,7 +1412,7 @@ PROTOTYPE._unbind = function(targets, suffix) {
 
 // Global delegation helper
 function delegate(selector, events, method) {
-	$(document.body).delegate(selector,
+	$(document).delegate(selector,
 		(events.split ? events : events.join('.'+NAMESPACE + ' ')) + '.'+NAMESPACE,
 		function() {
 			var api = QTIP.api[ $.attr(this, ATTR_ID) ];

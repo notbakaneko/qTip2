@@ -99,7 +99,7 @@ PROTOTYPE._unbind = function(targets, suffix) {
 
 // Global delegation helper
 function delegate(selector, events, method) {
-	$(document.body).delegate(selector,
+	$(document).delegate(selector,
 		(events.split ? events : events.join('.'+NAMESPACE + ' ')) + '.'+NAMESPACE,
 		function() {
 			var api = QTIP.api[ $.attr(this, ATTR_ID) ];

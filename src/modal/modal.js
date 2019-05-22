@@ -79,7 +79,7 @@ OVERLAY = function()
 			.hide();
 
 			// Make sure we can't focus anything outside the tooltip
-			$(document.body).bind('focusin'+MODALSELECTOR, stealFocus);
+			$(document).bind('focusin'+MODALSELECTOR, stealFocus);
 
 			// Apply keyboard "Escape key" close handler
 			$(document).bind('keydown'+MODALSELECTOR, function(event) {
